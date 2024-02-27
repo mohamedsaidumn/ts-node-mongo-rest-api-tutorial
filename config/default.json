@@ -1,0 +1,17 @@
+{
+    "server": {
+      "host": "localhost",
+      "port": 1000,
+      "env": "dev"
+    },
+    "database": {
+        "mongodb_username": "mohamedsaidumn",
+        "mongodb_password": "FLV7h5CYxg8FhULe",
+        "mongodb_cluster": "cluster04211",
+        "mongodb_database": "my-site"
+    }
+    ,
+    "authentification":{
+        "secret": "MOHAMED-REST-API-SECRET-KEY"
+    }
+}
