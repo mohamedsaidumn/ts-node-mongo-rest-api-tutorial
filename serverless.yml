@@ -1,0 +1,33 @@
+
+service: ts-node-mongo-rest-api-tutorial
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+package:
+  individually: true
+
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - http:
+          path: /{any+}
+          method: ANY
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-dotenv-plugin
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+

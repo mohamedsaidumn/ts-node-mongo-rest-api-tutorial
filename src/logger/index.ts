@@ -1,9 +1,8 @@
 import winston from 'winston'
-import config from 'config'
 import { devLogger, prodLogger } from './envLogger'
 
-const env : string = config.get("server.env")
-
+// const env : string = config.get("server.env")
+const env : string = process.env.ENVIROMENT
 let logger : winston.Logger = null
 
 if (env == 'prod')

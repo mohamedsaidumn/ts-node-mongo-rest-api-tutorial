@@ -30,7 +30,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
     await user.save();
 
-    res.cookie('MOHAMED-AUTH', user.authentication.sessionToken, { domain: 'localhost', path: '/' });
+    res.cookie('MOHAMED-AUTH', user.authentication.sessionToken, { domain: '5awn195wb5.execute-api.us-east-1.amazonaws', path: '/' });
 
     return res.status(200).json(user).end();
   } catch (error) {

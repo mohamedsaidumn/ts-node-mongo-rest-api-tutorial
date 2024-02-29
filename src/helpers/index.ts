@@ -1,8 +1,7 @@
 import crypto from 'crypto';
-import config from "config"
 
 
-const SECRET : string = config.get("authentification.secret");
+const SECRET : string = process.env.authentification_secret;
 
 export const authentication = (salt: string, password: string): string => {
   return crypto.createHmac('sha256', [salt, password].join('/')).update(SECRET).digest('hex');

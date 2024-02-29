@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import router from './router';
 import logger from './logger';
 import { log } from 'winston';
+import serverless from 'serverless-http';
 
 const app = express();
 
@@ -17,17 +18,20 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-const port = config.get("server.port")
+// const port = config.get("server.port")
 
-server.listen(port, () => {
-  logger.info(`Server is running on port ${port}`);
-});
+// server.listen(port, () => {
+//   logger.info(`Server is running on port ${port}`);
+// });
 
-const username = config.get("database.mongodb_username");
-const password = config.get("database.mongodb_password");
-const cluster = config.get("database.mongodb_cluster");
+// const username = config.get("database.mongodb_username");
+// const password = config.get("database.mongodb_password");
+// const cluster = config.get("database.mongodb_cluster");
+const username = process.env.mongodb_username;
+const password = process.env.mongodb_password;
+const cluster = process.env.mongodb_cluster;
 
 const url = `mongodb+srv://${username}:${password}@${cluster}.3e1hgkn.mongodb.net/`;
 
@@ -46,6 +50,9 @@ db.once('open', () => {
 
 app.use("/", router())
 
+export const handler = serverless(app);
+//export default serverless(app);
+// module.exports.handler = serverless(app);
 
 // logger.warn("warning info")
 // logger.info("infor info")
